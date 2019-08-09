@@ -1,7 +1,7 @@
 {%load static%}
 <!DOCTYPE html>
 <html lang="en">
-    
+
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="">
@@ -16,10 +16,10 @@
     <link rel="icon" href="img/core-img/favicon.ico">
 
     <!-- Core Stylesheet -->
-    <link href="style.css" rel="stylesheet">
+    <link href="{% static 'style.css'%}" rel="stylesheet">
 
     <!-- Responsive CSS -->
-    <link href="css/responsive/responsive.css" rel="stylesheet">
+    <link href="{%static 'css/responsive/responsive.css'%}" rel="stylesheet">
 
 </head>
 
@@ -47,37 +47,42 @@
     </div>
 
     <!-- ***** Header Area Start ***** -->
-    <header class="header_area" id="header">
-        <div class="container-fluid h-100">
-            <div class="row h-100">
-                <div class="col-12 h-100">
-                    <nav class="h-100 navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
-                        <!-- Nav -->
-                        <div class="collapse navbar-collapse" id="dorneNav">
-                            <ul class="navbar-nav mr-auto" id="dorneMenu">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                        <a class="nav-link" href="explore.html">Explore <span class="sr-only">(current)</span></a>
+    <header class="header_area" id="header" style="background-color:rgba(0,0,0,0.6);">
+            <div class="container-fluid h-100" >
+                <div class="row h-100">
+                    <div class="col-12 h-100">
+                        <nav class="h-100 navbar navbar-expand-lg">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dorneNav" aria-controls="dorneNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+                            <!-- Nav -->
+                            <div class="collapse navbar-collapse" id="dorneNav">
+                                <ul class="navbar-nav mr-auto" id="dorneMenu">
+                                   
+    
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{% url 'hello' %}">Home</a>
                                     </li>
-
-                               
-                               
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{%url 'contact'%}">Contact</a>
-                                </li>
-                            </ul>
-                            
-                        </div>
-                    </nav>
+    
+                                    <li class="nav-item ">
+                                        <a class="nav-link" href="{% url 'about' %}">Explore</a>
+                                    </li>
+    
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="{%url 'contact'%}">Contact <span class="sr-only">(current)</span></a>
+                                    </li>
+                                </ul>
+                                <!-- Search btn -->
+                                <div class="dorne-search-btn">
+                                    <a id="search-btn" href="#"><i class="fa fa-search" aria-hidden="true"></i>상호명으로 검색하기</a>
+                                </div>
+                                
+                                
+                            </div>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <!-- ***** Header Area End ***** -->
+        </header>
+        <!-- ***** Header Area End ***** -->
 
     <!-- ***** Breadcumb Area Start ***** -->
     <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(img/bg-img/hero-1.jpg)">
@@ -85,13 +90,13 @@
     <!-- ***** Breadcumb Area End ***** -->
 
     <!-- ***** Contact Area Start ***** -->
-    <div class="dorne-contact-area d-md-flex" id="contact">
+    <div class="dorne-contact-area d-md-flex "style="width:100%" id="contact">
         <!-- Contact Form Area -->
-        <div class="contact-form-area equal-height">
-                <div class="contact-text">
+            <div class="row">
+                <div class="contact-text col-sm-6" style="padding:2%;text-align:center;">
                     <h4>어따써?</h4>
                     <p>저희 프로젝트는 경기도 지역화폐 어쩌고 저쩌고</p>
-                    <div class="contact-info d-lg-flex">
+                    <div class="contact-info d-lg-flex" style="margin-left:20%;">
                         <div class="single-contact-info">
                             <h6><i class="fa fa-map-signs" aria-hidden="true"></i> 이윤직</h6>
                             <h6><i class="fa fa-map-signs" aria-hidden="true"></i> 이태호</h6>
@@ -111,7 +116,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
+                <div class="contact-form col-sm-6" style="padding:2%;">
                     <div class="contact-form-title">
                         <h6>의견을 보내주세요^>^</h6>
                     </div>
@@ -130,7 +135,7 @@
                                 <textarea name="message" class="form-control" id="Message" cols="30" rows="10" placeholder="내용"></textarea>
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn dorne-btn">보내기</button>
+                                <button type="submit"  class="btn dorne-btn">보내기</button>
                             </div>
                         </div>
                     </form>
@@ -141,37 +146,22 @@
     <!-- ***** Contact Area End ***** -->
 
     <!-- ****** Footer Area Start ****** -->
-    <footer class="dorne-footer-area">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 d-md-flex align-items-center justify-content-between">
-                    <div class="footer-text">
-                        <p>
-                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        </p>
-                    </div>
-                   
-                </div>
-            </div>
-        </div>
-    </footer>
+    
     <!-- ****** Footer Area End ****** -->
 
     <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="{% static 'js/jquery/jquery-2.2.4.min.js'%}"></script>
     <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
+    <script src="{% static 'js/bootstrap/popper.min.js'%}"></script>
     <!-- Bootstrap-4 js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="{% static 'js/bootstrap/bootstrap.min.js'%}"></script>
     <!-- All Plugins js -->
-    <script src="js/others/plugins.js"></script>
+    <script src="{% static 'js/others/plugins.js'%}"></script>
     <!-- Google Maps js -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk"></script>
-    <script src="js/google-map/map-active.js"></script>
+    <script src="{% static 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDk9KNSL1jTv4MY9Pza6w8DJkpI_nHyCnk'%}"></script>
+    <script src="{% static 'js/google-map/map-active.js'%}"></script>
     <!-- Active JS -->
-    <script src="js/active.js"></script>
+    <script src="{% static 'js/active.js'%}"></script>
 </body>
 
 </html>

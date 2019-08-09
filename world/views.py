@@ -53,13 +53,14 @@ def hello(request):
 def about(request):
     for_list = []
     for_map = []
+    hongkong = False
     if request.method=="POST":
         if ('dong' in request.POST and 'category' in request.POST):
             result = getdata("시흥시")
             result = search(result,"REFINE_LOTNO_ADDR",str(request.POST['dong']))
             result = search(result,"BIZCOND_NM",str(request.POST['category']))
             for items in result:
-                for_list.append([str(items['CMPNM_NM']),str(items['REFINE_LOTNO_ADDR'])])
+                for_list.append([str(items['CMPNM_NM']),str(items['REFINE_LOTNO_ADDR']),str(items['REFINE_WGS84_LAT'])+"_"+str(items['REFINE_WGS84_LOGT'])])
             for items in result:
                 for_map.append([items['REFINE_WGS84_LAT'],items['REFINE_WGS84_LOGT']])
 
@@ -67,7 +68,11 @@ def about(request):
             result = getdata("시흥시")
             result = search(result,"CMPNM_NM",str(request.POST['caviarSearch']))
             for items in result:
-                for_list.append([str(items['CMPNM_NM']),str(items['REFINE_LOTNO_ADDR'])])
+                for_list.append([str(items['CMPNM_NM']),str(items['REFINE_LOTNO_ADDR']),str(items['REFINE_WGS84_LAT'])+"_"+str(items['REFINE_WGS84_LOGT'])])
             for items in result:
                 for_map.append([items['REFINE_WGS84_LAT'],items['REFINE_WGS84_LOGT']])
-    return render(request,"about.html",{'list':for_list,'locations': for_map})
+    if len(for_list)>0:
+        return render(request,"about.html",{'list':for_list,'locx': for_map[0][0],'locy': for_map[0][1],'le': range(1,len(for_list)+1),'hongkong':hongkong})
+    else:
+        hongkong = True
+        return render(request,"about.html",{'list':for_list,'locx': 37.474056,'locy': 126.9833588,'le': range(0),'hongkong':hongkong})
